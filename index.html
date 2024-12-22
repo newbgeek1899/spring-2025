@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reyajul Hasan Leon - Academic Schedule Spring 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .event-card {
+            transition: transform 0.2s;
+        }
+        .event-card:hover {
+            transform: translateY(-2px);
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #ffffff;
+            }
+            .dark-mode-text {
+                color: #ffffff;
+            }
+            .dark-mode-bg {
+                background-color: #2d2d2d;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto p-4">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold mb-2 dark:text-white">Reyajul Hasan Leon</h1>
+            <h2 class="text-xl text-gray-600 dark:text-gray-300">Academic Schedule - Spring 2025</h2>
+            <div class="text-lg font-mono mt-2" id="clock"></div>
+        </header>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-6" id="dayButtons">
+            <button class="px-4 py-2 rounded bg-blue-500 text-white" onclick="showDay('Monday')">Monday</button>
+            <button class="px-4 py-2 rounded bg-gray-200 text-gray-800" onclick="showDay('Tuesday')">Tuesday</button>
+            <button class="px-4 py-2 rounded bg-gray-200 text-gray-800" onclick="showDay('Wednesday')">Wednesday</button>
+            <button class="px-4 py-2 rounded bg-gray-200 text-gray-800" onclick="showDay('Thursday')">Thursday</button>
+            <button class="px-4 py-2 rounded bg-gray-200 text-gray-800" onclick="showDay('Friday')">Friday</button>
+        </div>
+
+        <div id="scheduleContainer" class="space-y-4"></div>
+    </div>
+
+    <script>
+        const schedule = {
+            Monday: [
+                {
+                    time: '9:20-10:10',
+                    type: 'Class',
+                    course: 'MAP6621-01',
+                    location: 'LOV',
+                    details: 'Your Class'
+                },
+                {
+                    time: '10:40-11:30',
+                    type: 'Class',
+                    course: 'MAD5404-01',
+                    location: 'LOV',
+                    details: 'Your Class'
+                },
+                {
+                    time: '1:20-2:35',
+                    type: 'TA Duty',
+                    course: 'MAC1140 Lect 19',
+                    location: 'BEL102',
+                    role: 'Proctor 1',
+                    colleagues: ['Bahadoran, Navid', 'Khan, Ahmer Nadeem']
+                },
+                {
+                    time: '4:50-6:05',
+                    type: 'Class',
+                    course: 'CAP5619-01',
+                    location: 'HCB',
+                    details: 'Your Class'
+                }
+            ],
+            Tuesday: [
+                {
+                    time: '9:45-11:00',
+                    type: 'TA Duty',
+                    course: 'MGF1130 Lect 1',
+                    location: 'HWC2100',
+                    role: 'Proctor 3',
+                    colleagues: ['Philip Nyamele Asare', 'Gustav Jennetten']
+                }
+            ],
+            Wednesday: [
+                {
+                    time: '9:20-10:10',
+                    type: 'Class',
+                    course: 'MAP6621-01',
+                    location: 'LOV',
+                    details: 'Your Class'
+                },
+                {
+                    time: '10:40-11:30',
+                    type: 'Class',
+                    course: 'MAD5404-01',
+                    location: 'LOV',
+                    details: 'Your Class'
+                },
+                {
+                    time: '12:00-12:50',
+                    type: 'TA Duty',
+                    course: 'MAC1140 Lab 17',
+                    location: '113HTL',
+                    role: 'Proctor 1',
+                    colleagues: ['Wilk']
+                },
+                {
+                    time: '1:20-2:35',
+                    type: 'TA Duty',
+                    course: 'MAC1140 Lect 19',
+                    location: 'BEL102',
+                    role: 'Proctor 1',
+                    colleagues: ['Wilk']
+                },
+                {
+                    time: '3:05-4:20',
+                    type: 'Class',
+                    course: 'MAT5939-01',
+                    location: 'LOV',
+                    details: 'Your Class'
+                }
+            ],
+            Thursday: [
+                {
+                    time: '9:45-11:00',
+                    type: 'TA Duty',
+                    course: 'MGF1130 Lect 1',
+                    location: 'HWC2100',
+                    role: 'Proctor 2',
+                    colleagues: ['Harris']
+                },
+                {
+                    time: '1:20-2:35',
+                    type: 'TA Duty',
+                    course: 'MAC1140 Lect 1',
+                    location: 'FLH275',
+                    role: 'Proctor 2',
+                    colleagues: ['Siddharth Prakash']
+                }
+            ],
+            Friday: [
+                {
+                    time: '9:20-10:10',
+                    type: 'Class',
+                    course: 'MAP6621-01',
+                    location: 'LOV',
+                    details: 'Your Class'
+                },
+                {
+                    time: '10:40-11:30',
+                    type: 'Class',
+                    course: 'MAD5404-01',
+                    location: 'LOV',
+                    details: 'Your Class'
+                },
+                {
+                    time: '1:20-2:10',
+                    type: 'Class',
+                    course: 'MAP6939-04',
+                    location: 'LOV',
+                    details: 'Your Class'
+                }
+            ]
+        };
+
+        function updateClock() {
+            const now = new Date();
+            const clockElement = document.getElementById('clock');
+            clockElement.textContent = now.toLocaleTimeString() + ' - ' + now.toLocaleDateString();
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function showDay(day) {
+            const buttons = document.querySelectorAll('#dayButtons button');
+            buttons.forEach(button => {
+                if (button.textContent === day) {
+                    button.className = 'px-4 py-2 rounded bg-blue-500 text-white';
+                } else {
+                    button.className = 'px-4 py-2 rounded bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
+                }
+            });
+
+            const container = document.getElementById('scheduleContainer');
+            const daySchedule = schedule[day];
+
+            if (!daySchedule || daySchedule.length === 0) {
+                container.innerHTML = '<div class="text-center text-gray-500 dark:text-gray-400 py-8">No events scheduled for ' + day + '</div>';
+                return;
+            }
+
+            container.innerHTML = daySchedule.map((event) => `
+                <div class="event-card p-4 rounded-lg shadow-md ${event.type === 'Class' ? 'bg-purple-50 dark:bg-purple-900' : 'bg-blue-50 dark:bg-blue-900'}">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-lg font-semibold ${event.type === 'Class' ? 'text-purple-700 dark:text-purple-300' : 'text-blue-700 dark:text-blue-300'}">${event.course}</span>
+                        <span class="px-3 py-1 rounded text-sm ${event.type === 'Class' ? 'bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-200' : 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200'}">${event.type}</span>
+                    </div>
+                    <div class="space-y-1 text-gray-600 dark:text-gray-300">
+                        <div><strong>Time:</strong> ${event.time}</div>
+                        <div><strong>Location:</strong> ${event.location}</div>
+                        ${event.details ? `<div><strong>Details:</strong> ${event.details}</div>` : ''}
+                        ${event.role ? `<div><strong>Role:</strong> ${event.role}</div>` : ''}
+                        ${event.colleagues ? `<div><strong>Colleagues:</strong> ${event.colleagues.join(', ')}</div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        showDay('Monday');
+    </script>
+</body>
+</html>
